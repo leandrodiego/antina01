@@ -223,11 +223,33 @@ D --> E[Interacción Finalizada / Datos Consolidados]
         }
     });
     
-    // Abrir modal al hacer clic en un diagrama (usando delegación de eventos)
+    // **FIXED**: Abrir modal al hacer clic en un diagrama, manejando la carga asíncrona.
     slideViewport.addEventListener('click', (e) => {
         const diagramContainer = e.target.closest('.diagram-container');
-        if (diagramContainer) {
+        if (!diagramContainer) return; // Salir si el clic no fue en un diagrama
+
+        const svgElement = diagramContainer.querySelector('svg');
+
+        if (svgElement) {
+            // Si el SVG ya existe, abrir el modal inmediatamente.
             openDiagramModal(diagramContainer);
+        } else {
+            // Si el SVG no existe, es probable que Mermaid no haya terminado de renderizar.
+            // Buscamos el código Mermaid original.
+            const mermaidNode = diagramContainer.querySelector('.mermaid');
+            if (mermaidNode) {
+                // Cambiar cursor para indicar carga
+                diagramContainer.style.cursor = 'wait';
+                // Forzamos el renderizado de este nodo y esperamos la promesa.
+                mermaid.run({ nodes: [mermaidNode] }).then(() => {
+                    // Una vez renderizado, intentamos abrir el modal.
+                    openDiagramModal(diagramContainer);
+                    diagramContainer.style.cursor = 'zoom-in'; // Restaurar cursor
+                }).catch(err => {
+                    console.error("Error re-rendering mermaid on click:", err);
+                    diagramContainer.style.cursor = 'zoom-in'; // Restaurar cursor en caso de error
+                });
+            }
         }
     });
     
