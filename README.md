@@ -1,21 +1,27 @@
-Presentación: Modelos de Envío de Mensajes
-Este proyecto es una presentación web interactiva creada para comparar dos modelos estratégicos de envío de mensajes a clientes.
-Descripción
-El objetivo de la presentación es analizar las ventajas y desventajas de dos enfoques para recolectar información clave de una base de clientes:
-1.	Modelo 1: Envío Único: Un solo mensaje masivo para recopilar toda la información.
-2.	Modelo 2: Dos Envíos Secuenciales: Una estrategia de dos pasos para segmentar y luego obtener detalles.
-La presentación es totalmente responsiva y se puede navegar usando los botones "Anterior" y "Siguiente".
-Estructura de Archivos
-El proyecto está organizado en los siguientes archivos:
-•	index.html: La estructura principal de la página web.
-•	style.css: Contiene los estilos personalizados para la presentación.
-•	script.js: Maneja la lógica de las diapositivas, la interactividad y la renderización de los diagramas.
-Cómo ver la presentación
-Para ver la presentación, simplemente clona este repositorio y abre el archivo index.html en cualquier navegador web moderno (como Chrome, Firefox, Safari o Edge).
-Alternativamente, si el proyecto está desplegado en GitHub Pages, puedes acceder a él a través de la URL proporcionada en la sección "About" del repositorio.
-Tecnologías Utilizadas
-•	HTML5: Para la estructura del contenido.
-•	Tailwind CSS (vía CDN): Para el diseño y los estilos visuales.
-•	JavaScript: Para la interactividad y la lógica de las diapositivas.
-•	Mermaid.js: Para renderizar los diagramas de flujo a partir de texto.
+Presentación Interactiva: Modelos de Envío de Mensajes
+Este proyecto es una presentación web interactiva creada para comparar dos modelos estratégicos de envío de mensajes a clientes. El objetivo es determinar la forma más eficiente de recolectar información específica (si un cliente tiene internet, la velocidad y si usa Android TV).
+La presentación está construida con HTML, CSS y JavaScript, y utiliza la librería Mermaid.js para generar los diagramas de flujo de forma dinámica.
+Características
+•	Navegación Intuitiva: Se puede avanzar y retroceder entre las diapositivas con botones de "Anterior" y "Siguiente".
+•	Diseño Moderno y Responsivo: La interfaz se adapta a diferentes tamaños de pantalla, desde móviles a escritorio, utilizando Tailwind CSS.
+•	Diagramas Dinámicos: Los flujos de los modelos se visualizan con diagramas generados por Mermaid.js.
+•	Zoom de Diagramas: Al hacer clic en cualquier diagrama, se abrirá una ventana emergente (modal) que permite visualizarlo en un tamaño mayor para facilitar su lectura y análisis.
+Estructura del Proyecto
+•	index.html: Contiene la estructura principal de la página y los contenedores para las diapositivas.
+•	style.css: Incluye todos los estilos de la presentación, tanto los personalizados como las utilidades de Tailwind CSS.
+•	script.js: Maneja toda la lógica interactiva:
+o	Carga del contenido de las diapositivas.
+o	Navegación entre slides.
+o	Renderizado de los diagramas de Mermaid.
+o	Funcionalidad de la ventana emergente para el zoom de los diagramas.
+•	README.md: Este archivo.
+Cómo Usarlo
+1.	Clona o descarga este repositorio.
+2.	Abre el archivo index.html en tu navegador web.
+No se requiere ningún servidor o paso de compilación para visualizar la presentación.
+Dependencias Externas
+Este proyecto utiliza las siguientes librerías externas a través de CDN:
+•	Tailwind CSS: Para un diseño rápido y responsivo.
+•	Mermaid.js: Para la generación de diagramas de flujo a partir de texto.
+•	Google Fonts (Inter): Para la tipografía de la presentación.
 
