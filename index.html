@@ -1,191 +1,39 @@
-
-                <ul>
-                    <li>**Situación:** Cese de señal de antena en la localidad.</li>
-                    <li>**Necesidad:** Recopilar información sobre **internet en el domicilio** del cliente (velocidad, AndroidTV) para ofrecer alternativas de servicio.</li>
-                    <li>**Propósito de los modelos:** Optimizar la recolección de datos y la experiencia del cliente.</li>
-                </ul>
-            </div>
-
-            <div class="slide">
-                <h2>Modelo 1 - Envío Único: Visión General</h2>
-                <h3>Objetivo: Obtener toda la información en una sola interacción.</h3>
-            </div>
-
-            <div class="slide">
-                <h2>Modelo 1 - Envío Único: Flujo Detallado</h2>
-                <img src="https://mermaid.live/svg/graph%20TD%0A%20%20A%5BEnv%C3%ADo%20Masivo%20a%20TODOS%5D%20--%3E%20B%7B%C2%BFInternet%3F%20(1-SI%20%2F%202-NO)%7D%0A%20%20B%20--%201-SI%20--%3E%20C%5BAsignar%20TAG%3A%20%22Tiene%20Internet%22%5D%0A%20%20C%20--%3E%20D%5BRespuesta%20Aut.%3A%20%22Genial!%20Velocidad%20y%20AndroidTV%3F%22%5D%0A%20%20D%20--%3E%20E%5BEsperar%20Respuesta%20Abierta%5D%0A%20%20E%20--%3E%20F%5BAn%C3%A1lisis%20Manual%5D%0A%0A%20%20B%20--%202-NO%20--%3E%20G%5BAsignar%20TAG%3A%20%22No%20Tiene%20Internet%22%5D%0A%20%20G%20--%3E%20H%5BRespuesta%20Aut.%20y%20Cierre%5D%0A%20%20H%20--%3E%20I%5BInteracci%C3%B3n%20Resuelta%5D%0A%0A%20%20B%20--%20Otra%20cosa%20--%3E%20J%5BAn%C3%A1lisis%20Manual%20de%20Respuesta%5D%0A%20%20J%20--%3E%20K%5BDeterminaci%C3%B3n%20Manual%20del%20Caso%5D" alt="Diagrama Modelo 1" class="diagram-img">
-                <ul>
-                    <li>**Paso 1: Envío Masivo**
-                        <ul>
-                            <li>**Mensaje a TODOS los clientes:** "¡Hola {{name}}! Antina TV... ¿Tenés internet en ese domicilio? **1-SI / 2-NO**"</li>
-                        </ul>
-                    </li>
-                    <li>**Paso 2: Procesamiento de Respuestas (Si "1-SI")**
-                        <ul>
-                            <li>**Acción:** Asignar **TAG: "Tiene servicio de internet"**</li>
-                            <li>**Respuesta automática:** "¡Genial! Contanos velocidad y si tenés AndroidTV."</li>
-                        </ul>
-                    </li>
-                    <li>**Paso 3: Procesamiento de Respuestas (Si "2-NO")**
-                        <ul>
-                            <li>**Acción:** Asignar **TAG: "No Tiene servicio de internet"**</li>
-                            <li>**Respuesta automática y Cierre:** "¡Entendido! Haremos llegar a asesores. Gracias."</li>
-                        </ul>
-                    </li>
-                    <li>**Paso 4: Procesamiento de Respuestas (Si "Otra cosa")**
-                        <ul>
-                            <li>**Acción:** Requiere **Análisis Manual** de la respuesta.</li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="slide">
-                <h2>Modelo 1 - Envío Único: Ventajas y Desventajas</h2>
-                <ul>
-                    <li>**Ventaja:**
-                        <ul>
-                            <li>**Un solo envío:** Menor costo inicial de mensajes.</li>
-                        </ul>
-                    </li>
-                    <li>**Desventaja:**
-                        <ul>
-                            <li>**Manejo complejo de respuestas:** Requiere **análisis manual** para respuestas que no sean "1" o "2". Puede generar demoras.</li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="slide">
-                <h2>Modelo 2 - Dos Envíos: Visión General</h2>
-                <h3>Objetivo: Asegurar la primera respuesta (SI/NO) antes de pedir detalles, priorizando la estandarización.</h3>
-            </div>
-
-            <div class="slide">
-                <h2>Modelo 2 - Dos Envíos: Flujo Detallado - Envío 1</h2>
-                <img src="https://mermaid.live/svg/graph%20TD%0A%20%20A%5BPrimer%20Env%C3%ADo%20Masivo%20a%20TODOS%5D%20--%3E%20B%7B%C2%BFInternet%3F%20(1-SI%20%2F%202-NO)%7D%0A%20%20B%20--%201-SI%20--%3E%20C%5BAsignar%20TAG%3A%20%22Tiene%20Internet%22%5D%0A%20%20C%20--%3E%20D%5BRespuesta%20Aut.%20y%20Cierre%20de%201er%20flujo%5D%0A%20%20D%20--%3E%20E%5BMarcar%20para%20Segundo%20Env%C3%ADo%5D%0A%0A%20%20B%20--%202-NO%20--%3E%20F%5BAsignar%20TAG%3A%20%22No%20Tiene%20Internet%22%5D%0A%20%20F%20--%3E%20G%5BRespuesta%20Aut.%20y%20Cierre%5D%0A%20%20G%20--%3E%20H%5BInteracci%C3%B3n%20Resuelta%5D%0A%0A%20%20B%20--%20Otra%20cosa%20--%3E%20I%5BRespuesta%20Aut.%3A%20%22Por%20favor%2C%20respond%C3%A9%20con%20'1-SI'%20o%20'2-NO'.%22%5D%0A%20%20I%20--%3E%20J%5BEsperar%20Respuesta%20Correcta%5D" alt="Diagrama Modelo 2 - Envío 1" class="diagram-img">
-                <ul>
-                    <li>**Paso 1: Primer Envío Masivo**
-                        <ul>
-                            <li>**Mensaje a TODOS los clientes:** "¡Hola {{name}}! Antina TV... ¿Tenés internet en ese domicilio? **1-SI / 2-NO**"</li>
-                        </ul>
-                    </li>
-                    <li>**Paso 2: Procesamiento de Respuestas del Envío 1 (Si "1-SI")**
-                        <ul>
-                            <li>**Acción:** Asignar **TAG: "Tiene servicio de internet"**</li>
-                            <li>**Respuesta automática y Cierre del primer flujo:** "¡Entendido! Haremos llegar a asesores. Gracias."</li>
-                        </ul>
-                    </li>
-                    <li>**Paso 3: Procesamiento de Respuestas del Envío 1 (Si "2-NO")**
-                        <ul>
-                            <li>**Acción:** Asignar **TAG: "No Tiene servicio de internet"**</li>
-                            <li>**Respuesta automática y Cierre:** "¡Entendido! Haremos llegar a asesores. Gracias."</li>
-                        </ul>
-                    </li>
-                    <li>**Paso 4: Procesamiento de Respuestas del Envío 1 (Si "Otra cosa")**
-                        <ul>
-                            <li>**Respuesta automática:** "Por favor, respondé con '1-SI' o '2-NO'."</li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="slide">
-                <h2>Modelo 2 - Dos Envíos: Flujo Detallado - Envío 2</h2>
-                <img src="https://mermaid.live/svg/graph%20TD%0A%20%20A%5BSegundo%20Env%C3%ADo%20(Solo%20a%20segmento%20%22Tiene%20Internet%22)%5D%20--%3E%20B%5BCliente%20Responde%5D%0A%20%20B%20--%3E%20C%5BAn%C3%A1lisis%20Manual%20de%20Velocidad%20y%20AndroidTV%5D%0A%20%20C%20--%3E%20D%5BConsolidaci%C3%B3n%20de%20Datos%20%2F%20Interacci%C3%B3n%20Resuelta%5D" alt="Diagrama Modelo 2 - Envío 2" class="diagram-img">
-                <ul>
-                    <li>**Paso 5: Segundo Envío (Solo a Segmento "Tiene Internet")**
-                        <ul>
-                            <li>**Mensaje SOLO a clientes que respondieron "1-SI":** "¡Hola {{name}}! Hace unos días nos confirmaste que tenés internet... Contanos velocidad y si tenés AndroidTV."</li>
-                        </ul>
-                    </li>
-                    <li>**Paso 6: Procesamiento de Respuestas del Envío 2**
-                        <ul>
-                            <li>**Acción:** Requiere **Análisis Manual** de velocidad y AndroidTV.</li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="slide">
-                <h2>Modelo 2 - Dos Envíos: Ventajas y Desventajas</h2>
-                <ul>
-                    <li>**Ventajas:**
-                        <ul>
-                            <li>**Claridad en la primera respuesta:** Se asegura un "SI" o "NO" preciso inicialmente.</li>
-                            <li>**Revisión manual focalizada:** Solo se revisan en detalle las respuestas del grupo que sí tiene internet.</li>
-                        </ul>
-                    </li>
-                    <li>**Desventajas:**
-                        <ul>
-                            <li>**Doble costo de envío:** Implica pagar dos campañas de mensajes.</li>
-                            <li>**Mayor tiempo para resultados:** Los datos finales demoran al menos **48 horas** por la secuencialidad.</li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="slide">
-                <h2>Conclusión y Próximos Pasos</h2>
-                <h3>Factores clave a considerar:</h3>
-                <ul>
-                    <li>**Presupuesto vs. Precisión:** ¿Priorizamos el ahorro en envíos o la facilidad de procesamiento de datos?</li>
-                    <li>**Capacidad Operativa:** ¿Cuántos casos manuales podemos manejar?</li>
-                    <li>**Plazos de tiempo para la recolección de información:** ¿Qué tan rápido necesitamos que se obtenga toda la información consolidada?</li>
-                </ul>
-                <h3>Preguntas para Debatir:</h3>
-                <ul>
-                    <li>¿Qué modelo se alinea mejor con nuestras prioridades actuales?</li>
-                    <li>¿Podemos mitigar las desventajas del modelo elegido?</li>
-                </ul>
-            </div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentación Modelos de Envío de Mensajes Antina TV</title>
+    
+    <!-- Tailwind CSS CDN (para que las clases de utilidad funcionen) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Mermaid.js for diagrams -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Hoja de estilos personalizada -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="slide-viewport">
+             <!-- Las diapositivas se inyectarán aquí mediante JavaScript -->
+        </div>
+        <div class="navigation-buttons">
+            <button id="prevBtn" class="nav-button" disabled>Anterior</button>
+            <button id="nextBtn" class="nav-button">Siguiente</button>
         </div>
     </div>
 
-    <div class="button-container">
-        <button id="prevBtn" disabled>Anterior</button>
-        <button id="nextBtn">Siguiente</button>
-    </div>
-
-    <script>
-        const slidesWrapper = document.getElementById('slidesWrapper');
-        const slides = document.querySelectorAll('.slide');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-
-        let currentSlide = 0;
-        const totalSlides = slides.length;
-
-        function showSlide(index) {
-            if (index >= 0 && index < totalSlides) {
-                currentSlide = index;
-                slidesWrapper.style.transform = `translateX(${-currentSlide * 100}%)`;
-                updateButtons();
-            }
-        }
-
-        function nextSlide() {
-            if (currentSlide < totalSlides - 1) {
-                showSlide(currentSlide + 1);
-            }
-        }
-
-        function prevSlide() {
-            if (currentSlide > 0) {
-                showSlide(currentSlide - 1);
-            }
-        }
-
-        function updateButtons() {
-            prevBtn.disabled = (currentSlide === 0);
-            nextBtn.disabled = (currentSlide === totalSlides - 1);
-        }
-
-        prevBtn.addEventListener('click', prevSlide);
-        nextBtn.addEventListener('click', nextSlide);
-
-        // Inicializar la presentación
-        showSlide(0);
-    </script>
+    <!-- Script personalizado -->
+    <script src="script.js"></script>
 </body>
 </html>
+
+
+

@@ -1,0 +1,186 @@
+/* Estilos personalizados para la presentación */
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f0f2f5; /* Un gris muy suave para el fondo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.presentation-container {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    /* Usar aspect-ratio para mantener la forma en diferentes tamaños */
+    aspect-ratio: 16 / 9;
+    max-height: 90vh; /* Limitar la altura máxima en pantallas altas */
+    background-color: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08); /* Sombra más definida */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.slide-viewport {
+    flex-grow: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.slide {
+    width: 100%;
+    height: 100%;
+    padding: 3rem 4rem;
+    box-sizing: border-box;
+    display: none; /* Ocultar por defecto */
+    flex-direction: column;
+    /* Alinear contenido al top para consistencia */
+    align-items: flex-start;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    overflow-y: auto; /* Permitir scroll si el contenido excede */
+}
+
+.slide.active {
+    display: flex; /* Mostrar diapositiva activa */
+    opacity: 1;
+    z-index: 10;
+}
+
+h1 {
+    font-size: clamp(2rem, 5vw, 3rem); /* Fuente responsiva */
+    font-weight: 700;
+    color: #1c1c1c;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: clamp(1.8rem, 4vw, 2.4rem); /* Fuente responsiva */
+    font-weight: 700; /* Aumentado a bold */
+    color: #2a2a2a;
+    margin-bottom: 1.2rem;
+    line-height: 1.2;
+    text-transform: uppercase; /* Títulos en mayúsculas */
+}
+
+h3 {
+    font-size: clamp(1.2rem, 3.5vw, 1.8rem); /* Fuente responsiva */
+    font-weight: 600;
+    color: #3b3b3b;
+    margin-bottom: 1rem;
+}
+
+p, ul {
+    font-size: clamp(1rem, 2.5vw, 1.1rem); /* Fuente responsiva */
+    line-height: 1.7;
+    color: #4a4a4a;
+    margin-bottom: 0.8rem;
+    max-width: 75ch; /* Mejor legibilidad */
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+ul li {
+    position: relative;
+    padding-left: 1.8rem;
+    margin-bottom: 0.7rem;
+}
+
+ul li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #7BB53D;
+    font-size: 1.3em;
+    top: -0.1em;
+}
+
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    background-color: #f8f8f8;
+    border-top: 1px solid #ececec;
+    z-index: 20;
+    flex-shrink: 0;
+}
+
+.nav-button {
+    background-color: #7BB53D;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    outline: none;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    box-shadow: 0 2px 8px rgba(123, 181, 61, 0.2);
+}
+
+.nav-button:hover:not(:disabled) {
+    background-color: #6da234;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(123, 181, 61, 0.3);
+}
+
+.nav-button:disabled {
+    background-color: #e0e0e0;
+    color: #a0a0a0;
+    cursor: not-allowed;
+}
+
+.diagram-container {
+    width: 100%;
+    height: auto;
+    min-height: 250px; /* Altura mínima para el diagrama */
+    max-height: 45vh; /* Reducido para achicar el diagrama */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.8rem;
+    padding: 1rem;
+    box-sizing: border-box;
+    background: #fdfdfd;
+    border: 1px solid #eee;
+}
+
+.diagram-container svg {
+    max-width: 100%;
+    height: auto;
+    max-height: 43vh; /* Reducido para achicar el diagrama */
+}
+
+/* Ajustes específicos para pantallas pequeñas */
+@media (max-width: 768px) {
+    body {
+        padding: 0.5rem;
+    }
+    .presentation-container {
+        aspect-ratio: unset; /* Desactivar aspect-ratio para llenar la pantalla */
+        height: 95vh;
+        max-height: none;
+    }
+    .slide {
+        padding: 1.5rem;
+    }
+     p, ul {
+        max-width: 100%;
+    }
+}
+
